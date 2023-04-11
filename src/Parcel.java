@@ -11,7 +11,9 @@ public class Parcel {
             this.packageType = packageType;
         }
         
-        public double countCartons(double weight, double volume) {
+        public double countCartons() {
+            this.weight = weight;
+            this.volume = volume;
             double cartons;
             double cartonMaxWeight = 3.5;
             double cartonMaxVolume = 0.11;
@@ -30,5 +32,13 @@ public class Parcel {
 
         public double getVolume() {
             return volume;
+        }
+
+        public double insuranceCost() {
+            return orderCost * 0.0001;
+        }
+
+        public String getPackageType() {
+            return packageType;
         }
 }
