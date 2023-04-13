@@ -15,7 +15,6 @@ public class Tariff {
     }
     public long getTariffByVolume (){
         return crossBoarderbyVolume;
-    }
-    
+    }    
 }
 

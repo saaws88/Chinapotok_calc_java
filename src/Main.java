@@ -1,24 +1,25 @@
 public class Main {
   public static void main (String[] args) {
     
-    Parcel testParcel = new Parcel(2000000, 3.0, 0.12, "3");
+  Parcel testParcel = new Parcel(2000000, 3.0, 0.12, "1");
+  Tariff testTariff = new Tariff(3000);
+  Currencies testCurrencies = new Currencies(1191, 8178);
+  Customer testIvan = new Customer(10);
     
-    Tariff rates = new Tariff(3000);
+  double costToHuzhou = testTariff.getCost2Huzhou() / 100;
+  System.out.format("Доставка до Эми: %.2f CNY \n", costToHuzhou);
     
-    double costToHuzhou = rates.getCost2Huzhou() / 100;
-    System.out.format("Доставка до Эми: %.2f CNY \n", costToHuzhou);
-    
-    double packagedWeight = testParcel.getWeight() + testParcel.countCartons();
-    //System.out.println(packagedWeight);
+  double packagedWeight = testParcel.getWeight() + testParcel.countCartons();
+  //System.out.println(packagedWeight);
 
-   double density = packagedWeight / testParcel.getVolume();
+  double density = packagedWeight / testParcel.getVolume();
 
-    double inBoarderCost;
-    if (packagedWeight * 2 >= testParcel.getVolume() * 2 * 200) {
+  double inBoarderCost;
+  if (packagedWeight * 2 >= testParcel.getVolume() * 2 * 200) {
       inBoarderCost = packagedWeight * 2;
-    } else {
+  } else {
       inBoarderCost = testParcel.getVolume() * 2 * 200;
-    }
+  }
     System.out.format("Доставка до Иу: %.2f CNY \n", inBoarderCost);
 
     double cartonsCost = Math.ceil(testParcel.countCartons() * 65);
@@ -32,9 +33,9 @@ public class Main {
     double cratedVolume = 0;    
     if (testParcel.getPackageType().equals("1")) {
       if (density <= 105) {
-       crossboarderCost = testParcel.getVolume() * rates.getTariffByVolume() / 100;
+       crossboarderCost = testParcel.getVolume() * testTariff.getTariffByVolume() / 100;
       } else {
-         crossboarderCost = packagedWeight * rates.getTariffByWeight() / 100;
+         crossboarderCost = packagedWeight * testTariff.getTariffByWeight() / 100;
       }
     }
     else {
@@ -52,7 +53,11 @@ public class Main {
       System.out.format("Стоимость обрешетки: %.2f \n", crateCost);
     } 
       System.out.format("Стоимость доставки до РФ: %.2f USD \n", crossboarderCost);
+
+    double totalCostRUR = ((costToHuzhou + inBoarderCost + cartonsCost) * testCurrencies.getCNY() + crossboarderCost * testCurrencies.getUSD()) * (testIvan.getCustomerType() * 0.01);
+    double totalCostUSD = totalCostRUR / testCurrencies.getCNY();
+    
+    System.out.format("Итого: %.2f RUR, ", totalCostRUR);
+    System.out.format("%.2f USD", totalCostUSD);     
   }
 }
-
-
