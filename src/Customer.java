@@ -1,5 +1,5 @@
 public class Customer  {
-    private String customerName;
+    //private String customerName;
     private int customerType;
     public  int[] customerTypeSet = {0,5,10}; 
     
