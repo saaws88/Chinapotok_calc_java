@@ -1,5 +1,5 @@
 public class Parcel {
-        private long orderCost; //RUR
+        private long orderCost;
         private double weight;
         private double volume;
         private String packageType;
@@ -12,8 +12,6 @@ public class Parcel {
         }
         
         public double countCartons() {
-            this.weight = weight;
-            this.volume = volume;
             double cartons;
             double cartonMaxWeight = 3.5;
             double cartonMaxVolume = 0.11;

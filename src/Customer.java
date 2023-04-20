@@ -7,18 +7,27 @@ public class Customer  {
         this.customerType = customerType;
     }
 
-public int getCustomerType() {
-    while (true) {
-        int counter=0;
-        for(int i=0;i<customerTypeSet.length;i++) {
-            if (customerType != customerTypeSet[i]) {
-                counter++;
-            }
-        }
-        if (counter != customerTypeSet.length) {
-            break;
+
+    //CLI validation
+    /*public int getCustomerType() {
+        while (true) {
+            int counter=0;
+                for(int i=0;i<customerTypeSet.length;i++) {
+                    if (customerType != customerTypeSet[i]) {
+                        counter++;
+                    }
+                }
+                if (counter != customerTypeSet.length) {
+                    break;
+                }
         } 
+       return customerType;
+        }*/
+
+    public double customerMargin() {
+        double margin = customerType * 0.01 + 1;
+        return margin;
     }
-    return customerType;
-}
+
+
 }
